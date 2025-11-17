@@ -310,6 +310,7 @@ List.foldr (\x a -> x ++ " " ++ a) ""
 o poner primero el acumulador
 -}
 
+--PLIEGUES
 --contar, acumular y promedio de una lista con foldl
 import Html exposing (text)
 
@@ -335,3 +336,25 @@ main =
     promedio listaMain
         |> String.fromInt
         |> Html.text
+
+
+import Html
+
+trasnf: List a -> (a -> b) -> List b
+trasnf xs fx = 
+  List.foldl (\x acc-> acc ++ (fx x)::[]) [] xs --A cada elemento de una lista, se lo pasa como parametro a una 
+  --funcion que transforma el elemento en otro y lo agrega a una lista en la cual se iran acumulando los resultados
+  --de cada elemento
+
+pasarAStr: List Int -> List String
+pasarAStr xs = trasnf xs String.fromInt 
+
+reduceStr: List String -> String
+reduceStr xs = List.foldl (\x acc-> acc ++ x) "" xs
+
+lista = [1,2,3,4,5,6,7,8]
+
+main =
+  Html.text (reduceStr (pasarAStr lista))
+  
+

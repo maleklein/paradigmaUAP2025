@@ -524,7 +524,6 @@ insertarBST valor tree =
                     Err msg ->
                         Err msg
 
-
 {-
 arbolPequeno =
     Node 3 (Node 1 Empty Empty) (Node 5 Empty Empty)
